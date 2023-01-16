@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react'
+import Counter from './components/Counter';
+import Navbar from './components/Navbar';
+class App extends React.Component{
+  constructor() {
+    super();
+    this.state = {
+      counter: 0
+    }; 
+  }
+  render(){
+    const incrementCounter = () => {
+      this.setState({
+        counter: this.state.counter + 1 
+      });
+    };
+    const decrementCounter = () => {
+      if (this.state.counter > 0) {
+        this.setState({
+          counter: this.state.counter - 1 
+        });
+      }
+    };
+    return(
+     <>
+     <Counter counterValue={this.state.counter} incrementCounter={incrementCounter} decrementCounter={decrementCounter} style={{background:"red",color:"white"}}/>
+     <Counter counterValue={this.state.counter} incrementCounter={incrementCounter} decrementCounter={decrementCounter} style={{background:"white",color:"black"}}/>
+     <Navbar counterValue={this.state.counter} />
+    </>
+    )
+  }
 }
-
 export default App;
